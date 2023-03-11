@@ -1,0 +1,9 @@
+{
+	"name": "datafactory4movie",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "00745eb9-8c5e-4b74-b097-3673bb74c773",
+		"tenantId": "d46f8101-1a4f-4082-a932-f938c62ebf81"
+	}
+}
