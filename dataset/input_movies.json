@@ -1,5 +1,5 @@
 {
-	"name": "DelimitedText1",
+	"name": "input_movies",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "datalake_connection",
