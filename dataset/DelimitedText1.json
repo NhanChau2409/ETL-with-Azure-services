@@ -1,0 +1,80 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalake_connection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "action.csv",
+				"fileSystem": "movies"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "movie_id",
+				"type": "String"
+			},
+			{
+				"name": "movie_name",
+				"type": "String"
+			},
+			{
+				"name": "year",
+				"type": "String"
+			},
+			{
+				"name": "certificate",
+				"type": "String"
+			},
+			{
+				"name": "runtime",
+				"type": "String"
+			},
+			{
+				"name": "genre",
+				"type": "String"
+			},
+			{
+				"name": "rating",
+				"type": "String"
+			},
+			{
+				"name": "description",
+				"type": "String"
+			},
+			{
+				"name": "director",
+				"type": "String"
+			},
+			{
+				"name": "director_id",
+				"type": "String"
+			},
+			{
+				"name": "star",
+				"type": "String"
+			},
+			{
+				"name": "star_id",
+				"type": "String"
+			},
+			{
+				"name": "votes",
+				"type": "String"
+			},
+			{
+				"name": "gross(in $)",
+				"type": "String"
+			}
+		]
+	}
+}
