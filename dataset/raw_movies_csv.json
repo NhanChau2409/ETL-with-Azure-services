@@ -1,5 +1,5 @@
 {
-	"name": "input_movies",
+	"name": "raw_movies_csv",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "datalake_connection",
