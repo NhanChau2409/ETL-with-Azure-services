@@ -35,12 +35,7 @@
 					"name": "PutInIngestedMoviesCSV2"
 				}
 			],
-			"transformations": [
-				{
-					"name": "ToCSV",
-					"description": "Parse into CSV format"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
 				"          movie_id as string,",
@@ -58,10 +53,11 @@
 				"          votes as string,",
 				"          {gross(in $)} as string",
 				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: true,",
 				"     limit: 20,",
-				"     ignoreNoFilesFound: false) ~> RawMoviesCSV",
+				"     ignoreNoFilesFound: false,",
+				"     wildcardPaths:['*']) ~> RawMoviesCSV",
 				"source(output(",
 				"          movie_id as string,",
 				"          movie_name as string,",
@@ -78,16 +74,12 @@
 				"          votes as double,",
 				"          {gross(in $)} as string",
 				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: true,",
 				"     limit: 20,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'arrayOfDocuments',",
 				"     backslashEscape: true) ~> RawMoviesJson",
-				"RawMoviesJson parse(format: 'delimited',",
-				"     columnNamesAsHeader: false,",
-				"     columnDelimiter: ',',",
-				"     nullValue: '') ~> ToCSV",
 				"RawMoviesCSV sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
@@ -96,13 +88,30 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1) ~> PutInIngestedMoviesCSV1",
-				"ToCSV sink(allowSchemaDrift: true,",
+				"RawMoviesJson sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> PutInIngestedMoviesCSV2"
+				"     skipDuplicateMapOutputs: true,",
+				"     saveOrder: 2,",
+				"     mapColumn(",
+				"          movie_id,",
+				"          movie_name,",
+				"          year,",
+				"          certificate,",
+				"          runtime,",
+				"          genre,",
+				"          rating,",
+				"          description,",
+				"          director,",
+				"          director_id,",
+				"          star,",
+				"          star_id,",
+				"          votes,",
+				"          {gross(in $)}",
+				"     )) ~> PutInIngestedMoviesCSV2"
 			]
 		}
 	}
