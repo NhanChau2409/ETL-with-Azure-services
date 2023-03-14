@@ -21,10 +21,18 @@
 			],
 			"sinks": [
 				{
-					"name": "sink1"
+					"dataset": {
+						"referenceName": "ingest_movies_csv",
+						"type": "DatasetReference"
+					},
+					"name": "PutInIngestedMoviesCSV1"
 				},
 				{
-					"name": "sink2"
+					"dataset": {
+						"referenceName": "ingest_movies_csv",
+						"type": "DatasetReference"
+					},
+					"name": "PutInIngestedMoviesCSV2"
 				}
 			],
 			"transformations": [
@@ -82,13 +90,19 @@
 				"     nullValue: '') ~> ToCSV",
 				"RawMoviesCSV sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     saveOrder: 1) ~> sink1",
+				"     saveOrder: 1) ~> PutInIngestedMoviesCSV1",
 				"ToCSV sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2"
+				"     skipDuplicateMapOutputs: true) ~> PutInIngestedMoviesCSV2"
 			]
 		}
 	}
