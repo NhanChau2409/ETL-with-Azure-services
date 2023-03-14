@@ -1,0 +1,21 @@
+{
+	"name": "ingest_movies_csv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "datalake_connection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "ingested-movie-csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
