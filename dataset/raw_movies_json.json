@@ -13,6 +13,52 @@
 				"fileSystem": "raw-movies-json"
 			}
 		},
-		"schema": {}
+		"schema": {
+			"type": "object",
+			"properties": {
+				"movie_id": {
+					"type": "string"
+				},
+				"movie_name": {
+					"type": "string"
+				},
+				"year": {
+					"type": "string"
+				},
+				"certificate": {
+					"type": "string"
+				},
+				"runtime": {
+					"type": "string"
+				},
+				"genre": {
+					"type": "string"
+				},
+				"rating": {
+					"type": "number"
+				},
+				"description": {
+					"type": "string"
+				},
+				"director": {
+					"type": "string"
+				},
+				"director_id": {
+					"type": "string"
+				},
+				"star": {
+					"type": "string"
+				},
+				"star_id": {
+					"type": "string"
+				},
+				"votes": {
+					"type": "number"
+				},
+				"gross(in $)": {
+					"type": "null"
+				}
+			}
+		}
 	}
 }
