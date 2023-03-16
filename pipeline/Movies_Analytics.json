@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Ingest data ",
+				"name": "Ingest",
 				"type": "ExecuteDataFlow",
 				"dependsOn": [],
 				"policy": {
