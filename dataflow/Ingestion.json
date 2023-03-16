@@ -21,16 +21,16 @@
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "ingest_movies_csv",
-						"type": "DatasetReference"
+					"linkedService": {
+						"referenceName": "datalake_connection",
+						"type": "LinkedServiceReference"
 					},
 					"name": "PutInIngestedMoviesCSV1"
 				},
 				{
-					"dataset": {
-						"referenceName": "ingest_movies_csv",
-						"type": "DatasetReference"
+					"linkedService": {
+						"referenceName": "datalake_connection",
+						"type": "LinkedServiceReference"
 					},
 					"name": "PutInIngestedMoviesCSV2"
 				}
@@ -82,21 +82,12 @@
 				"     backslashEscape: true) ~> RawMoviesJson",
 				"RawMoviesCSV sink(allowSchemaDrift: false,",
 				"     validateSchema: true,",
-				"     input(",
-				"          Column_1 as string,",
-				"          Column_2 as string,",
-				"          Column_3 as string,",
-				"          Column_4 as string,",
-				"          Column_5 as string,",
-				"          Column_6 as string,",
-				"          Column_7 as string,",
-				"          Column_8 as string,",
-				"          Column_9 as string,",
-				"          Column_10 as string,",
-				"          Column_11 as string,",
-				"          Column_12 as string,",
-				"          Column_13 as string",
-				"     ),",
+				"     format: 'delimited',",
+				"     fileSystem: 'ingested-movie-csv',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
@@ -121,43 +112,18 @@
 				"     )) ~> PutInIngestedMoviesCSV1",
 				"RawMoviesJson sink(allowSchemaDrift: false,",
 				"     validateSchema: true,",
-				"     input(",
-				"          Column_1 as string,",
-				"          Column_2 as string,",
-				"          Column_3 as string,",
-				"          Column_4 as string,",
-				"          Column_5 as string,",
-				"          Column_6 as string,",
-				"          Column_7 as string,",
-				"          Column_8 as string,",
-				"          Column_9 as string,",
-				"          Column_10 as string,",
-				"          Column_11 as string,",
-				"          Column_12 as string,",
-				"          Column_13 as string",
-				"     ),",
+				"     format: 'delimited',",
+				"     fileSystem: 'ingested-movie-csv',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     saveOrder: 2,",
-				"     mapColumn(",
-				"          movie_id,",
-				"          movie_name,",
-				"          year,",
-				"          certificate,",
-				"          runtime,",
-				"          genre,",
-				"          rating,",
-				"          description,",
-				"          director,",
-				"          director_id,",
-				"          star,",
-				"          star_id,",
-				"          votes,",
-				"          {gross(in $)}",
-				"     )) ~> PutInIngestedMoviesCSV2"
+				"     saveOrder: 2) ~> PutInIngestedMoviesCSV2"
 			]
 		}
 	}
