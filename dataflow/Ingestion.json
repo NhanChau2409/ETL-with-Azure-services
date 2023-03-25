@@ -21,16 +21,16 @@
 			],
 			"sinks": [
 				{
-					"linkedService": {
-						"referenceName": "datalake_connection",
-						"type": "LinkedServiceReference"
+					"dataset": {
+						"referenceName": "ingest_movies_csv",
+						"type": "DatasetReference"
 					},
 					"name": "PutInIngestedMoviesCSV1"
 				},
 				{
-					"linkedService": {
-						"referenceName": "datalake_connection",
-						"type": "LinkedServiceReference"
+					"dataset": {
+						"referenceName": "ingest_movies_csv",
+						"type": "DatasetReference"
 					},
 					"name": "PutInIngestedMoviesCSV2"
 				}
@@ -82,17 +82,9 @@
 				"     backslashEscape: true) ~> RawMoviesJson",
 				"RawMoviesCSV sink(allowSchemaDrift: false,",
 				"     validateSchema: true,",
-				"     format: 'delimited',",
-				"     fileSystem: 'ingested-movie-csv',",
-				"     columnDelimiter: ',',",
-				"     escapeChar: '\\\\',",
-				"     quoteChar: '\\\"',",
-				"     columnNamesAsHeader: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
 				"     mapColumn(",
 				"          movie_id,",
@@ -112,18 +104,26 @@
 				"     )) ~> PutInIngestedMoviesCSV1",
 				"RawMoviesJson sink(allowSchemaDrift: false,",
 				"     validateSchema: true,",
-				"     format: 'delimited',",
-				"     fileSystem: 'ingested-movie-csv',",
-				"     columnDelimiter: ',',",
-				"     escapeChar: '\\\\',",
-				"     quoteChar: '\\\"',",
-				"     columnNamesAsHeader: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     saveOrder: 2) ~> PutInIngestedMoviesCSV2"
+				"     saveOrder: 2,",
+				"     mapColumn(",
+				"          movie_id,",
+				"          movie_name,",
+				"          year,",
+				"          certificate,",
+				"          runtime,",
+				"          genre,",
+				"          rating,",
+				"          description,",
+				"          director,",
+				"          director_id,",
+				"          star,",
+				"          star_id,",
+				"          votes,",
+				"          {gross(in $)}",
+				"     )) ~> PutInIngestedMoviesCSV2"
 			]
 		}
 	}
