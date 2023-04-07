@@ -100,7 +100,6 @@
 				"          genre,",
 				"          rating,",
 				"          description,",
-				"          director,",
 				"          votes,",
 				"          {gross(in $)}",
 				"     )) ~> PutInIngestedMoviesCSV1",
@@ -123,7 +122,6 @@
 				"          genre,",
 				"          rating,",
 				"          description,",
-				"          director,",
 				"          votes,",
 				"          {gross(in $)}",
 				"     )) ~> PutInIngestedMoviesCSV2"
