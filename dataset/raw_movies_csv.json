@@ -13,7 +13,6 @@
 				"fileSystem": "raw-movies-csv"
 			},
 			"columnDelimiter": ",",
-			"rowDelimiter": "\r",
 			"escapeChar": "\\",
 			"firstRowAsHeader": false,
 			"quoteChar": "\""
